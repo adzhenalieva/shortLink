@@ -13,9 +13,9 @@ class App extends Component {
         event.preventDefault();
 
         let link = {
-           originalURL: this.state.link
+            originalURL: this.state.link
         };
-     
+
         this.props.create(link).then(() => {
             this.setState({link: ''})
         });
@@ -36,12 +36,13 @@ class App extends Component {
                     <input type="text" onChange={this.inputChangeHandler} value={this.state.link}/>
                     <button type="submit">Shorten</button>
                 </form>
-                    {this.props.shortLink ?
-                        <div>
-                            <p>Your link looks now like this</p>
-                            <button onClick={() => this.openShortLink(this.props.shortLink)}>http://links/{this.props.shortLink}</button>
-                        </div>
-                        : null}
+                {this.props.shortLink ?
+                    <div>
+                        <p>Your link looks now like this</p>
+                        <button
+                            onClick={() => this.openShortLink(this.props.shortLink)}>http://localhost:8000/links/{this.props.shortLink}</button>
+                    </div>
+                    : null}
             </div>
         );
     }

@@ -25,7 +25,7 @@ router.get('/:shortURL', (req, res) => {
 
 router.post('/', (req, res) => {
     const linkData = req.body;
-    linkData.shortURL = nanoid();
+    linkData.shortURL = nanoid(6);
     const link = new Link(linkData);
     link.save()
         .then(result => res.send(result))
