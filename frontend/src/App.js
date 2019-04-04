@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 import './App.css';
 import {connect} from "react-redux";
-import {createLink, openShortLink} from "./store/action";
+import {createLink} from "./store/action";
 
 class App extends Component {
     state = {
@@ -24,9 +24,6 @@ class App extends Component {
     inputChangeHandler = event => {
         this.setState({link: event.target.value})
     };
-    openShortLink = link => {
-        this.props.openShortLink(link)
-    };
 
     render() {
         return (
@@ -39,8 +36,7 @@ class App extends Component {
                 {this.props.shortLink ?
                     <div>
                         <p>Your link looks now like this</p>
-                        <button
-                            onClick={() => this.openShortLink(this.props.shortLink)}>http://localhost:8000/links/{this.props.shortLink}</button>
+                        <a href={'http://localhost:8000/links/'+(this.props.shortLink)}>http://localhost:8000/links/{this.props.shortLink}</a>
                     </div>
                     : null}
             </div>
@@ -57,8 +53,7 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = dispatch => {
     return {
-        create: link => dispatch(createLink(link)),
-        openShortLink: link => dispatch(openShortLink(link))
+        create: link => dispatch(createLink(link))
     }
 };
 
