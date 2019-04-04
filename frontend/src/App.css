@@ -6,6 +6,7 @@
 
 .App input{
   padding: 10px;
+  width: 80%;
   display: block;
   margin: 20px auto;
   border: 1px solid deeppink;

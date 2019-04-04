@@ -6,11 +6,11 @@ export const CREATE_LINK_SUCCESS = "CREATE_LINK_SUCCESS";
 export const fetchSuccess = data => {
     return {type: FETCH_SUCCESS, data};
 };
-export const createLinkSuccess = () => ({type: CREATE_LINK_SUCCESS});
+export const createLinkSuccess = data => ({type: CREATE_LINK_SUCCESS, data});
 
-export const fetchlink = (shortUrl) => {
+export const openShortLink = (shortUrl) => {
     return dispatch => {
-        return axios.get('/links'+shortUrl).then(
+        return axios.get('/links/'+shortUrl).then(
             response => dispatch(fetchSuccess(response.data))
         );
     };
@@ -19,7 +19,7 @@ export const fetchlink = (shortUrl) => {
 export const createLink = link => {
     return dispatch => {
         return axios.post('/links', link).then(
-            () => dispatch(createLinkSuccess())
-        );
+            (result) => dispatch(createLinkSuccess(result.data.shortURL))
+        )
     };
 };
